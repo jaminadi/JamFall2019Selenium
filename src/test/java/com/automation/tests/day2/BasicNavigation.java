@@ -21,9 +21,18 @@ public class BasicNavigation {
         //method can return the page tittle
         //you can also see it as tab name, in the browser
         String title = driver.getTitle(); //returns <title> some title </title> text
-        System.out.println("Title is: " + title); //Google
-        //browser cannot close itself
+        //or
+        String expectedTitle = "Google";
 
+        System.out.println("Title is: " + title); //Google
+
+        if (expectedTitle.equals(title)) {
+            System.out.println("Test passed!");
+        } else {
+            System.out.println("Test failed!");
+        }
+
+        //browser cannot close itself
         driver.close(); //to close browser
     }
 }
