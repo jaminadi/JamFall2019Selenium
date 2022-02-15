@@ -33,6 +33,14 @@ public class FindElementById {
         } else {
             System.out.println("Test failed");
         }
+
+        //let's click on Logout button. It looks like a button, but it's actually a link
+        //every element with <a> tag is a link
+
+        WebElement logout = driver.findElement(By.linkText("Logout"));
+        logout.click();
+        Thread.sleep(2000);
+
         driver.quit();
 
 
