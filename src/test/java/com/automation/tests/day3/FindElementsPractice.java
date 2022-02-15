@@ -33,6 +33,18 @@ public class FindElementsPractice {
 
         Thread.sleep(2000);
 
+        String expected = "Thank you for signing up. Click the button below to return to the home page.";
+        WebElement message = driver.findElement(By.className("subheader")); // you can also find it by tagName, etc..has to be unique
+        String actual = message.getText(); //returns visible text (anything in between opening and closing tags is a visible text)
+        // above is done to get the text <h3> Text </h3>
+
+        if (expected.equals(actual)) {
+            System.out.println("TEST PASSED");
+        } else {
+            System.out.println("TEST FAILED");
+        }
+
+
         driver.quit();//to close everything
 
     }
