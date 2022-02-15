@@ -39,6 +39,13 @@ public class FindElementById {
         //if you have a space in the text for link, just use partialLinkText instead of linkText
         //partialLingText - contains() - complete match is not required
         WebElement logout = driver.findElement(By.partialLinkText("Logout"));
+
+        String href = logout.getAttribute("href");
+        System.out.println(href);
+
+        String className = logout.getAttribute("class");
+        System.out.println(className);
+
         logout.click();
         Thread.sleep(2000);
 
