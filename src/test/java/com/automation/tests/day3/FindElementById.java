@@ -15,16 +15,24 @@ public class FindElementById {
         WebDriver driver = new ChromeDriver();
         driver.get("http://practice.cybertekschool.com/login");
 
-        driver.findElement(By.name("username")).sendKeys("Tom Smith");
+        driver.findElement(By.name("username")).sendKeys("tomsmith");
         Thread.sleep(2000);
 
-        // or driver.findElement(By.name("password")).sendKeys("supersecretpassword");
+        // or driver.findElement(By.name("password")).sendKeys("SuperSecretPassword");
         WebElement password = driver.findElement(By.name("password"));
-        password.sendKeys("supersecretpassword");
+        password.sendKeys("SuperSecretPassword");
 
         driver.findElement(By.id("wooden_spoon")).click();
         Thread.sleep(2000);
 
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
+        String actual = driver.findElement(By.tagName("h4")).getText();
+
+        if (expected.equals(actual)) {
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed");
+        }
         driver.quit();
 
 
