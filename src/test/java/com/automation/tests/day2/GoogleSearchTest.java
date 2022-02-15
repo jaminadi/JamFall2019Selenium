@@ -21,7 +21,7 @@ public class GoogleSearchTest {
         //we use locators to find elements
         //to choose locator, just use By.locator
         //first, we need to find locator on a page manually
-        WebElement search = driver.findElement(By.name("cr20"));
+        WebElement search = driver.findElement(By.name("q"));
         //once we found an element like above, how to enter text?
         //to enter text, use sendKeys() method
         //how to press Enter after entering the text?
