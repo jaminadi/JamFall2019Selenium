@@ -36,8 +36,9 @@ public class FindElementById {
 
         //let's click on Logout button. It looks like a button, but it's actually a link
         //every element with <a> tag is a link
-
-        WebElement logout = driver.findElement(By.linkText("Logout"));
+        //if you have a space in the text for link, just use partialLinkText instead of linkText
+        //partialLingText - contains() - complete match is not required
+        WebElement logout = driver.findElement(By.partialLinkText("Logout"));
         logout.click();
         Thread.sleep(2000);
 
