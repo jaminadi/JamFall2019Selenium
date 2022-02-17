@@ -24,9 +24,18 @@ public class TestForiFrame {
         WebElement textInput = driver.findElement(By.id("tinymce"));
         System.out.println(textInput.getText());
 
+        BrowserUtils.wait(3);
+        textInput.clear();//to delete text
+        textInput.sendKeys("Hello world!");
+        System.out.println(textInput.getText());
+
+        BrowserUtils.wait(3);
+
         //exit from the frame after we're done
         driver.switchTo().defaultContent();
 
+        WebElement heading = driver.findElement(By.tagName("h3"));
+        System.out.println(heading.getText());
 
         driver.quit();
     }
