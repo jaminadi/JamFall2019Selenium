@@ -24,7 +24,15 @@ public class RadioButtons {
 
         for (WebElement radioButton : radioButtons) { // we take each radiobutton
 
+
+            //<input type="radio" id="red" name="color">
             String id = radioButton.getAttribute("id");
+
+            //returns true if button was already clicked
+            boolean isSelected = radioButton.isSelected();
+            System.out.println(id + " is selected?" + isSelected);
+
+
             //isEnabled is to check if disabled button can be clicked (returns boolean)
             if (radioButton.isEnabled()) {
                 radioButton.click(); // and click on each of them
@@ -33,6 +41,7 @@ public class RadioButtons {
             } else {
                 System.out.println("Button is disabled, not clicked :: " + id);
             }
+            System.out.println();
         }
 
         driver.quit();
