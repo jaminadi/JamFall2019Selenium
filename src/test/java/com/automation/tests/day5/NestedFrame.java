@@ -15,11 +15,24 @@ public class NestedFrame {
 
         driver.get("http://practice.cybertekschool.com/nested_frames");
         BrowserUtils.wait(2);
-        driver.switchTo().frame("frame-top");
-        driver.switchTo().frame("frame-middle");
+        driver.switchTo().frame("frame-top"); // parent frame
+        driver.switchTo().frame("frame-middle");// child frame
 
-        WebElement content = driver.findElement(By.id("content"));
+        WebElement content = driver.findElement(By.id("content")); //content inside child frame
         System.out.println(content.getText());
+
+        driver.switchTo().parentFrame(); // go to the frame-top
+        driver.switchTo().frame("frame-right");//switch to the right frame
+
+        WebElement body = driver.findElement(By.tagName("body"));
+        System.out.println(body.getText());
+        //to go to the bottom frame, you will need to switch to the default content
+        //because top frame is a sibling for bottom frame, but not parent
+
+        driver.switchTo().defaultContent();
+
+        driver.switchTo().frame("frame-bottom");
+        System.out.println(driver.findElement(By.tagName("body")).getText());
 
 
         driver.quit();
