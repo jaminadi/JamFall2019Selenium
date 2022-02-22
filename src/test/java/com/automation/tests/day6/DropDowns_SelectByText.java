@@ -45,6 +45,7 @@ public class DropDowns_SelectByText {
         }
 
         BrowserUtils.wait(2);
+
         Select stateSelect = new Select(driver.findElement(By.id("state")));
         stateSelect.selectByVisibleText("Texas");
         //option that is currently selected
@@ -55,6 +56,12 @@ public class DropDowns_SelectByText {
             System.out.println("Test passed");
         } else {
             System.out.println("Test failed");
+        }
+
+        //get all states and print them out
+        List<WebElement> states = stateSelect.getOptions();
+        for (WebElement stateOption : states) {
+            System.out.println(stateOption.getText());
         }
 
 
