@@ -2,6 +2,7 @@ package com.automation.tests.day6;
 
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.DriverFactory;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -51,6 +52,23 @@ public class Alerts {
             System.out.println("Test failed");
         }
 
+        buttons.get(2).click(); // click on 3rd button
+        BrowserUtils.wait(2);
+
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys("Hello, World!"); // enter text
+        alert.accept(); //click OK
+
+        String actual2 = driver.findElement(By.id("result")).getText();
+        String expected2 = "Hello, World!";
+
+        if (actual2.endsWith(expected2)) {
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed");
+            System.out.println("Expected: " + expected2);
+            System.out.println("Actual: " + actual2);
+        }
 
         BrowserUtils.wait(3);
         driver.quit();
