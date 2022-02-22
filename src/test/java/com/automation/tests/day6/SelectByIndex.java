@@ -18,6 +18,8 @@ public class SelectByIndex {
         //index starts from 0, top to bottom count all states
         stateSelect.selectByIndex(9); // District of Columbia
 
+        //select last option
+        stateSelect.selectByIndex(stateSelect.getOptions().size() - 1);
 
         BrowserUtils.wait(3);
         driver.quit();
