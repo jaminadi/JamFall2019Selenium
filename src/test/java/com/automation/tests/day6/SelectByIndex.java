@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class SelectByValue {
+public class SelectByIndex {
 
     public static void main(String[] args) {
 
@@ -15,21 +15,13 @@ public class SelectByValue {
         BrowserUtils.wait(3);
 
         Select stateSelect = new Select(driver.findElement(By.id("state")));
-        stateSelect.selectByValue("DC");
-
-        String expected = "District Of Columbia";
-        String actual = stateSelect.getFirstSelectedOption().getText();
-        //we need to use getText(), because it returns a webelement, so that
-        //we could compare it with our "expected" String
-
-        if (expected.equals(actual)) {
-            System.out.println("Test passed");
-        } else {
-            System.out.println("Test failed");
-        }
+        //index starts from 0, top to bottom count all states
+        stateSelect.selectByIndex(9); // District of Columbia
 
 
         BrowserUtils.wait(3);
         driver.quit();
+
+
     }
 }
