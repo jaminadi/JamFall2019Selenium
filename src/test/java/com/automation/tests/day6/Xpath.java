@@ -27,8 +27,18 @@ public class Xpath {
         btn2.click();
         System.out.println(result.getText());
 
+        //click on button 3
         WebElement btn3 = driver.findElement(By.xpath("//button[starts-with(@id,'button_')]"));
         btn3.click();
+        System.out.println(result.getText());
+
+        //click on button 4
+        WebElement btn4 = driver.findElement(By.xpath("//button[@onclick='button4()']"));
+        btn4.click();
+        System.out.println(result.getText());
+
+        WebElement btn5 = driver.findElement(By.xpath("//button[contains(text(),'5')]"));
+        btn5.click();
         System.out.println(result.getText());
 
         BrowserUtils.wait(3);
