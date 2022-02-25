@@ -29,6 +29,9 @@ public class SearchTests {
             String var = searchItem.getText();
             if (!var.isEmpty() && (var.toLowerCase().contains("java"))) {
                 System.out.println(var);
+                //verify that every search result contains java
+                //if some of the search results does not contain java,
+                //the test will fail
                 Assert.assertTrue(var.toLowerCase().contains("java"));
             }
 
