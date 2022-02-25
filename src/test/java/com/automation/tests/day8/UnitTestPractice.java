@@ -28,6 +28,13 @@ public class UnitTestPractice {
         Assert.assertEquals(actual, expected); // this method replaces the method below
     }
 
+    @Test
+    public void test2() {
+        String expected = "rac";
+        String actual = reverseString("car");
+        Assert.assertEquals(actual, expected);
+    }
+
     public static boolean verifyEquals(String expected, String actual) {
         if (expected.equals(actual)) {
             System.out.println("Test passed");
