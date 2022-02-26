@@ -35,7 +35,6 @@ public class SearchTests {
                 Assert.assertTrue(var.toLowerCase().contains("java"));
             }
 
-
             //if there is a text - print it
             //this way we eliminated lines with empty text
             //there are elements that don't have any text & our test will fail if we leave them
@@ -45,8 +44,36 @@ public class SearchTests {
             // Assert.assertTrue(var.toLowerCase().contains("java"));
         }
     }
-    //}
 
+    /**
+     * Given user is on amazon.com page
+     * When user enters "java" as a search item
+     * Then user clicks on the search button
+     * And user clicks on the first search item
+     * And user verifies that title of the search item contains "Java"
+     */
+    @Test(description = "Search for Java book on amazon")
+    public void amazonSearchTest() {
+        driver.get("http://amazon.com");
+        driver.manage().window().maximize();
+        BrowserUtils.wait(2);
+
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java", Keys.ENTER);
+        BrowserUtils.wait(2);
+
+        List<WebElement> searchItems = driver.findElements(By.xpath("//h2//a"));
+
+        //click on the first item
+        searchItems.get(0).click();
+        BrowserUtils.wait(2);
+
+        WebElement productTitle = driver.findElement(By.id("productTitle"));
+        String productTitleString = productTitle.getText();
+        System.out.println(productTitleString);
+
+        Assert.assertTrue(productTitleString.contains("Java"));
+
+    }
 
     @BeforeMethod
     public void setup() { //setup
