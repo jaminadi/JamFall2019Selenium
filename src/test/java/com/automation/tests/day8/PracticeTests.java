@@ -68,6 +68,25 @@ public class PracticeTests {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * Given user is on practice landing page
+     * When user navigates to "Checkboxes" page
+     * And clicks on checkbox#1
+     * Then user verifies that checkbox #1 is selected
+     */
+    @Test
+    public void checkboxTest() {
+        driver.findElement(By.linkText("Checkboxes")).click();
+        BrowserUtils.wait(2);
+
+        List<WebElement> checkboxes = driver.findElements(By.tagName("input"));
+        checkboxes.get(0).click();
+
+        Assert.assertTrue(checkboxes.get(0).isSelected(), "Checkbox #1 is not selected");
+
+    }
+
+
     @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
