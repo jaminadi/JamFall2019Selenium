@@ -79,6 +79,9 @@ public class PracticeTests {
         driver.findElement(By.linkText("Checkboxes")).click();
         BrowserUtils.wait(2);
 
+        //locator for specific checkbox, xpath: //input[1], cssSelector: input:nth-of-type(1)
+        //   //input[@type="checkbox"][1]
+        //collect all checkboxes
         List<WebElement> checkboxes = driver.findElements(By.tagName("input"));
         checkboxes.get(0).click();
 
