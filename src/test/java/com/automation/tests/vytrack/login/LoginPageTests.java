@@ -44,6 +44,20 @@ public class LoginPageTests {
         assertEquals(actual, expected);
     }
 
+
+    @Test(description = "Login as store manager and verify that title is equals to Dashboard")
+    public void loginAsStoreManager() {
+        driver.findElement(usernameBy).sendKeys(username);
+        driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
+        BrowserUtils.wait(3);
+
+        //how can we verify title
+        String expected = "Dashboard";
+        String actual = driver.getTitle();//returns text under tag <title> and the text on tab
+        assertEquals(actual, expected, "Page title is not correct!");
+    }
+
+
     @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
