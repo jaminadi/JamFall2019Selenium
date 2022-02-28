@@ -9,9 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+
 //static import of all Assertions
 import static org.testng.Assert.*;
 //static import allows you to use static methods without specifying class name
+
 
 public class LoginPageTests {
     private WebDriver driver;
