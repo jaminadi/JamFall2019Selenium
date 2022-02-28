@@ -19,6 +19,12 @@ import static org.testng.Assert.*;
 public class LoginPageTests {
     private WebDriver driver;
     private String URL = "https://qa2.vytrack.com/user/login";
+
+    //these are correct credentials for store manager
+    private String username = "storemanager85";
+    private String password = "UserUser123";
+
+
     private By usernameBy = By.id("prependedInput"); // By is a class
     private By passwordBy = By.id("prependedInput2");
     // > in css selector means same thing as / in xpath - direct child
