@@ -33,6 +33,9 @@ public class LoginPageTests {
         WebElement warningElement = driver.findElement(warningMessageBy);
         assertTrue(warningElement.isDisplayed()); // if warning message is not visible, test will fail
 
+        String expected = "Invalid user name or password.";
+        String actual = warningElement.getText();
+        assertEquals(actual, expected);
     }
 
     @BeforeMethod
