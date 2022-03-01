@@ -22,7 +22,7 @@ public class CallsPageTests {
     private String storeManagerPassword = "UserUser123";
 
     private By activitiesBy = By.xpath("//span[@class='title title-level-1' and contains (text(), 'Activities')]");
-    private By logCallBtnBy = By.linkText("Log call");
+    private By logCallBtnBy = By.cssSelector("a[title='Log call']");
 
 //Login as story manager to Vytrack
 //Go to activities ===> Calls
@@ -30,12 +30,8 @@ public class CallsPageTests {
 
     @Test
     public void verifyLogButton() {
-        try {
             WebElement logCallBtnElement = driver.findElement(logCallBtnBy);
             Assert.assertTrue(logCallBtnElement.isDisplayed());
-        } catch (NoSuchElementException e) {
-            System.out.println("Exception caught and handled");
-        }
     }
 
 
@@ -48,15 +44,16 @@ public class CallsPageTests {
 
         actions = new Actions(driver);
 
-        BrowserUtils.wait(2);
+        BrowserUtils.wait(4);
         driver.findElement(usernameBy).sendKeys(storeManagerUserName);
         driver.findElement(passwordBy).sendKeys(storeManagerPassword, Keys.ENTER);
-        BrowserUtils.wait(2);
+        BrowserUtils.wait(4);
 
         //hover over Activities
         actions.moveToElement(driver.findElement(activitiesBy)).perform();
-        BrowserUtils.wait(2);
+        BrowserUtils.wait(4);
         driver.findElement(By.linkText("Calls")).click();
+        BrowserUtils.wait(5);
     }
 
     @AfterMethod
