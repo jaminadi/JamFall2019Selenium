@@ -77,7 +77,15 @@ public class RegistrationForm {
 
         WebElement warningMessage = driver.findElement(By.xpath("//small[text()='first name must be more than 2 and less than 64 characters long']"));
         Assert.assertTrue(warningMessage.isDisplayed()); // verify that warning message is displayed
+    }
 
+    @Test
+    public void verifyAlphabeticLettersOnlyTest() {
+        driver.findElement(firstNameBy).sendKeys("123");
+        BrowserUtils.wait(2);
+
+        WebElement warningMessage = driver.findElement(By.xpath("//small[text()='first name can only consist of alphabetical letters']"));
+        Assert.assertTrue(warningMessage.isDisplayed());
     }
 
 
