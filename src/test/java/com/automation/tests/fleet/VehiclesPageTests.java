@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -36,7 +37,8 @@ public class VehiclesPageTests {
     private By passwordBy = By.id("prependedInput2");
 
     private By fleetBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Fleet')]");
-    private By vehiclesBy = By.xpath("//span[@class='title title-level-2' and contains(text(), 'Vehicles')]");
+    private By subtitleBy = By.className("oro-subtitle");
+
 
     @Test(description = "Login as store manager, click on Fleet and select Vehicles, verify that subtitle is equals to All Cars")
     public void verifyPageSubTitle() {
@@ -44,14 +46,24 @@ public class VehiclesPageTests {
         driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
         BrowserUtils.wait(3);
 
-        driver.findElement(fleetBy).click();
+        //  driver.findElement(fleetBy).click(); //click on fleet selection
+        //Actions class is used for more advanced browser interactions
+        Actions actions = new Actions(driver);
+        //move to element instead of click
+        actions.moveToElement(driver.findElement(fleetBy)).perform();
+        //perform() - to execute command
+        //every action should end with perform()
+
         BrowserUtils.wait(2);
-        driver.findElement(vehiclesBy).click();
+
+        driver.findElement(By.linkText("Vehicles")).click();
+        BrowserUtils.wait(3);
+
+        WebElement subTitleElement = driver.findElement(subtitleBy);
         BrowserUtils.wait(3);
 
         String expected = "All Cars";
-        String actual = driver.findElement(By.className("oro-subtitle")).getText();
-
+        String actual = subTitleElement.getText();
         assertEquals(actual, expected, "The text does not match");
 
 
