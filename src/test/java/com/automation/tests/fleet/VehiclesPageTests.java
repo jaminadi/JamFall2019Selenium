@@ -39,9 +39,44 @@ public class VehiclesPageTests {
     private By fleetBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Fleet')]");
     private By subtitleBy = By.className("oro-subtitle");
 
+    private By pageNumberBy = By.cssSelector("input[type='number']");
+
 
     @Test(description = "Login as store manager, click on Fleet and select Vehicles, verify that subtitle is equals to All Cars")
     public void verifyPageSubTitle() {
+
+        //the code from here was cut to the @BeforeMethod,
+        // so that we don't have to copy paste the whole code in our second test
+        //////////////////////////////////////////////////////////////
+
+        WebElement subTitleElement = driver.findElement(subtitleBy);
+        BrowserUtils.wait(3);
+
+        String expected = "All Cars";
+        String actual = subTitleElement.getText();
+        assertEquals(actual, expected, "The text does not match");
+    }
+
+
+    //    Given user is on the vytrack landing page
+//    When user logs on as a store manager
+//    Then user navigates to Fleet --> Vehicles
+//    And user verifies that page number is equals to "1"
+    @Test
+    public void verifyPageNumber() {
+
+        String expected = "1";
+        String actual = driver.findElement(pageNumberBy).getAttribute("value");
+        assertEquals(expected, actual, "The value is not correct");
+    }
+
+    @BeforeMethod
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(URL);
+        driver.manage().window().maximize();
+
         driver.findElement(usernameBy).sendKeys(username);
         driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
         BrowserUtils.wait(3);
@@ -58,23 +93,6 @@ public class VehiclesPageTests {
 
         driver.findElement(By.linkText("Vehicles")).click();
         BrowserUtils.wait(3);
-
-        WebElement subTitleElement = driver.findElement(subtitleBy);
-        BrowserUtils.wait(3);
-
-        String expected = "All Cars";
-        String actual = subTitleElement.getText();
-        assertEquals(actual, expected, "The text does not match");
-
-
-    }
-
-    @BeforeMethod
-    public void setup() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get(URL);
-        driver.manage().window().maximize();
     }
 
     @AfterMethod
