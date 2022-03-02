@@ -54,6 +54,21 @@ public class ActionsClassTests {
         actions.moveToElement(img2).perform();
         WebElement imgText2 = driver.findElement(By.xpath("//h5[text()='name: user2']"));
         Assert.assertTrue(imgText2.isDisplayed());
+    }
+
+    @Test
+    public void jqueryMenuTest() {
+        driver.get("http://practice.cybertekschool.com/jqueryui/menu");
+        //hover on "enabled"
+        //hover on "downloads"
+        //click on PDF
+
+        WebElement enabledBtn = driver.findElement(By.id("ui-id-3"));
+        WebElement downloadsBtn = driver.findElement(By.id("ui-id-4"));
+        WebElement pdfBtn = driver.findElement(By.id("ui-id-5"));
+        actions.moveToElement(enabledBtn).pause(1000).
+                moveToElement(downloadsBtn).pause(1000).
+                moveToElement(pdfBtn).click().build().perform();
 
     }
 
