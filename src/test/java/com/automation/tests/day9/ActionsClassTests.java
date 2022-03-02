@@ -50,6 +50,11 @@ public class ActionsClassTests {
         //verify that webelement that contains the text is visible
         Assert.assertTrue(imgText1.isDisplayed());
 
+        //move to the second image
+        actions.moveToElement(img2).perform();
+        WebElement imgText2 = driver.findElement(By.xpath("//h5[text()='name: user2']"));
+        Assert.assertTrue(imgText2.isDisplayed());
+
     }
 
     @AfterMethod
