@@ -82,8 +82,18 @@ public class JSExecutor2 {
         js.executeScript("arguments[0].setAttribute('value', 'tomsmith')", username);
         js.executeScript("arguments[0].setAttribute('value', 'SuperSecretPassword')", password);
         js.executeScript("arguments[0].click()", loginBtn);
+
+        BrowserUtils.wait(4);
+
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
+        String subheader = js.executeScript("return document.getElementsByClassName('subheader')[0].textContent").toString();
+
+        Assert.assertEquals(subheader, expected);
     }
 
+    public void scrollToElement() {
+
+    }
 
     @AfterMethod
     public void tearDown() {
