@@ -1,19 +1,14 @@
-package com.automation.tests.day9;
+package com.automation.tests.day10;
 
 import com.automation.utilities.BrowserUtils;
-import com.automation.utilities.DriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.sql.Driver;
 
 public class JSExecutor {
     private RemoteWebDriver driver; //reference type decides what is accessible
