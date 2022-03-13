@@ -91,7 +91,14 @@ public class JSExecutor2 {
         Assert.assertEquals(subheader, expected);
     }
 
+    @Test
     public void scrollToElement() {
+        BrowserUtils.wait(4);
+        WebElement link = driver.findElement(By.linkText("CYDEO"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //this will automatically scroll until the element becomes visible
+        js.executeScript("arguments[0].scrollIntoView(true)", link);
 
     }
 
