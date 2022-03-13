@@ -99,6 +99,16 @@ public class JSExecutor2 {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //this will automatically scroll until the element becomes visible
         js.executeScript("arguments[0].scrollIntoView(true)", link);
+    }
+
+    @Test
+    public void scrollTest() {
+        driver.navigate().to("http://practice.cybertekschool.com/infinite_scroll");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        for (int i = 0; i < 15; i++) {
+            js.executeScript("window.scrollBy(0,1000)");
+            BrowserUtils.wait(2);
+        }
 
     }
 
