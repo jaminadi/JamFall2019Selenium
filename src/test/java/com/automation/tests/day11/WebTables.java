@@ -64,6 +64,23 @@ public class WebTables {
         System.out.println(BrowserUtils.getTextFromWebElements(links));
     }
 
+    // Go to tables example page
+    //delete record with jsmith@gmail.com email
+    //verify that number of rows equals to 3
+    //verify that jsmith@gmail.com does not exist anymore in the table
+
+    @Test
+    public void deleteRowTest() {
+
+        String xpath = "//table[1]//td[text()='jsmith@gmail.com']/..//a[text()='delete']";
+        driver.findElement(By.xpath(xpath)).click();
+
+        //get count of rows
+        int rowCount = driver.findElements(By.xpath("//table[1]//tbody/tr")).size();
+
+        Assert.assertEquals(rowCount, 3);
+        Assert.assertTrue(driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']")).isEmpty());
+    }
 
     @AfterMethod
     public void tearDown() {
