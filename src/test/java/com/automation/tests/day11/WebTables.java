@@ -13,6 +13,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -85,6 +86,27 @@ public class WebTables {
         //List<WebElement> emails = driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']"));
         //Assert.assertTrue(emails.isEmpty());
     }
+
+    //Let's write a function that will return column index based on column name
+    @Test
+    public void getColumnIndexByName() {
+        String columnName = "Email";
+
+        List<WebElement> columnNames = driver.findElements(By.xpath("//table[2]//th")); //6 columnNames
+        int index = 0; // column index
+        //we need to go through each column until we find the one we need
+        for (int i = 0; i < columnNames.size(); i++) {
+
+            String actualColumnName = columnNames.get(i).getText();
+
+            if (actualColumnName.equals(columnName)) {
+                index = i + 1; // in xpath indexes start with 1
+                break;
+            }
+        }
+        Assert.assertEquals(index, 3);
+    }
+
 
     @AfterMethod
     public void tearDown() {
