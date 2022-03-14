@@ -2,9 +2,12 @@ package com.automation.tests.day11;
 
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.DriverFactory;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,6 +22,13 @@ public class WebTables {
 
     @BeforeMethod
     public void setup() {
+        //use this to open automated chrome browser without seeing it
+        //will run the automated browser in the back, without visibly opening it
+//        WebDriverManager.chromedriver().version("79").setup();
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.setHeadless(true); // to run browser without GUI
+//        driver = new ChromeDriver(chromeOptions);
+
         driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/tables");
         driver.manage().window().maximize();
@@ -38,11 +48,20 @@ public class WebTables {
     }
 
     @Test
-    public void verifyRowCount() {
+    public void verifyRowCount() { // collecting all rows from the web table
         // //tbody//tr - to get all rows from table body, excluding table header
         List<WebElement> rows = driver.findElements(By.xpath("//table[1]//tbody//tr"));
         //if we will get the size of this collection, it automatically equals to number of elements
+        //expected - 4 rows in the table
         Assert.assertEquals(rows.size(), 4);
+    }
+
+    //to get specific column, skip row index, and just provide td index
+    @Test
+    public void getSpecificColumn() {
+        //td[5] - column with links
+        List<WebElement> links = driver.findElements(By.xpath("//table[1]//tbody//tr//td[5]"));
+        System.out.println(BrowserUtils.getTextFromWebElements(links));
     }
 
 
