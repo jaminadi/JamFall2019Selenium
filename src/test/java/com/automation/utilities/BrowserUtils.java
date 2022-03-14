@@ -15,6 +15,10 @@ public class BrowserUtils {
         }
     }
 
+    /**
+     * @param elements represents collection of WebElements
+     * @return collection of Strings
+     */
     public static List<String> getTextFromWebElements(List<WebElement> elements) {
         List<String> textValues = new ArrayList<>();
         for (WebElement element : elements) {

@@ -30,6 +30,7 @@ public class WebTables {
         List<String> expected = Arrays.asList("Last Name", "First Name", "Email", "Due", "Web Site", "Action");
         List<WebElement> columnNames = driver.findElements(By.xpath("//table[1]//th"));
 
+        //this is done for printing out the elements
         for (WebElement columnName : columnNames) {
             System.out.println(columnName.getText());
         }
