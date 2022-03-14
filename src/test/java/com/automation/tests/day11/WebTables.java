@@ -79,7 +79,11 @@ public class WebTables {
         int rowCount = driver.findElements(By.xpath("//table[1]//tbody/tr")).size();
 
         Assert.assertEquals(rowCount, 3);
+
         Assert.assertTrue(driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']")).isEmpty());
+        //  or
+        //List<WebElement> emails = driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']"));
+        //Assert.assertTrue(emails.isEmpty());
     }
 
     @AfterMethod
