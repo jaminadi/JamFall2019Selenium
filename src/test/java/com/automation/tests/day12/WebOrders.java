@@ -41,12 +41,41 @@ public class WebOrders {
         for (WebElement checkbox : checkboxes) {
             Assert.assertTrue(checkbox.isSelected());
         }
-
     }
 
 
+    /*
+    Go to web orders page
+    Verify that Steve Johns zip code is 21233
+    Then, update his zip code to 20002
+    Then, verify that Steve Johns zip code is 20002
+     */
+    @Test
+    public void updateZipCode() {
+        driver.manage().window().maximize();
+        WebElement zipCode = driver.findElement(By.xpath("//tr[4]//td[9]"));
+        //or WebElement zipCode = driver.findElement(By.xpath("//td[text()='Steve Johns']//following-sibling::td[7]"));
+        Assert.assertEquals(zipCode.getText(), "21233");
+
+        //click on clickable image
+        driver.findElement(By.xpath("//td[text()='Steve Johns']//following-sibling::td/input")).click();
+        // or driver.findElement(By.xpath("//tr[4]//td[9]")).click();
+
+        WebElement zipCodeInput = driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5"));
+
+        zipCodeInput.clear();
+        zipCodeInput.sendKeys("20002");
+
+        driver.findElement(By.linkText("Update")).click();
+
+        zipCode = driver.findElement(By.xpath("//td[text()='Steve Johns']//following-sibling::td[7]"));
+        Assert.assertEquals(zipCode.getText(), "20002");
+
+    }
+
     @AfterMethod
     public void tearDown() {
+        BrowserUtils.wait(3);
         driver.quit();
     }
 }
