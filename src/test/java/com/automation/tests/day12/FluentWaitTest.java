@@ -38,10 +38,13 @@ public class FluentWaitTest {
                 return driver.findElement(By.xpath("//button[text()='Submit']"));
             }
         });
-
         //or replace with Lambda expression
-        // WebElement submitBtn = wait.until(webDriver -> driver.findElement(By.xpath("//button[text()='Submit']")));
+        // WebElement submitBtn = wait.until(webDriver or driver -> driver.findElement(By.xpath("//button[text()='Submit']")));
 
+        driver.findElement(By.name("username")).sendKeys("tomsmith");
+        driver.findElement(By.name("password")).sendKeys("SuperSecretPassword");
+
+        submitBtn.click();
     }
 
 
