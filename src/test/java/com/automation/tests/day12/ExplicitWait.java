@@ -18,12 +18,15 @@ public class ExplicitWait {
 
     @Test
     public void waitForTitle() {
-        driver.get("http://google.com");
+        driver.get("https://google.com");
         //first, we need to create WebDriverWait object
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         //wait up to 10 seconds until title contains Google
         wait.until(ExpectedConditions.titleContains("Google"));
+
+        driver.navigate().to("https://amazon.com");
+        wait.until(ExpectedConditions.titleContains("Amazon"));
 
     }
 
