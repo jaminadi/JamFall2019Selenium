@@ -17,6 +17,7 @@ public class ConfigurationReader {
             configFile = new Properties();
             //load properties file into properties object
             configFile.load(input);
+            //close the input stream at the end
             input.close();
 
         } catch (Exception e) {
