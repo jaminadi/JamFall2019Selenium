@@ -38,7 +38,9 @@ public class ExplicitWait {
         driver.get("http://practice.cybertekschool.com/dynamic_loading/1");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.findElement(By.tagName("button")).click();
+
+        //click on start button
+        driver.findElement(By.xpath("//button[text()='Start']")).click();
 
         WebElement username = driver.findElement(By.name("username"));
         WebElement password = driver.findElement(By.name("password"));
