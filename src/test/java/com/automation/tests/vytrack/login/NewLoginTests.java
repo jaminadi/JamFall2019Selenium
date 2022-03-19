@@ -12,5 +12,6 @@ public class NewLoginTests extends TestBase {
     public void verifyPageTitle() {
         LoginPage loginPage = new LoginPage();
 
+
     }
 }
