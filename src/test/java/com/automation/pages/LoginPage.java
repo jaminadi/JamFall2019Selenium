@@ -35,7 +35,6 @@ public class LoginPage {
     /**
      * Method to login, version 1
      * Login as a specific user
-     *
      * @param usernameValue
      * @param passwordValue
      */
