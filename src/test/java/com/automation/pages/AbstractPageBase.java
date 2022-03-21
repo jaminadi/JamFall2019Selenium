@@ -36,7 +36,9 @@ public abstract class AbstractPageBase {
         WebElement moduleElement = driver.findElement(By.xpath(moduleXpath));
 
         Actions actions = new Actions(driver);
+
         BrowserUtils.wait(4);
+
         actions.moveToElement(tabElement).pause(2000).click(moduleElement).build().perform();
 
 
