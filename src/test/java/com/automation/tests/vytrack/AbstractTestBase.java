@@ -52,7 +52,7 @@ public abstract class AbstractTestBase { //this class is supposed to act like de
 
     @BeforeMethod
     public void setup() {
-        String URL = ConfigurationReader.getProperty("qa1");
+        String URL = ConfigurationReader.getProperty("qa3");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().window().maximize();
         wait = new WebDriverWait(Driver.getDriver(), 15);
