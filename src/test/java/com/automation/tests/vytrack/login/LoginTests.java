@@ -17,7 +17,7 @@ import static org.testng.Assert.*;
 //static import allows you to use static methods without specifying class name
 
 
-public class LoginPageTests {
+public class LoginTests {
     private WebDriver driver;
     private String URL = "https://qa2.vytrack.com/user/login";
 
