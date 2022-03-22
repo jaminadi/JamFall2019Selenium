@@ -1,10 +1,15 @@
 package com.automation.utilities;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +37,6 @@ public class BrowserUtils {
 
     /**
      * waits for backgrounds processes on the browser to complete
-     *
      * @param timeOutInSeconds
      */
     public static void waitForPageToLoad(long timeOutInSeconds) {
@@ -47,7 +51,6 @@ public class BrowserUtils {
 
     /**
      * Clicks on an element using JavaScript
-     *
      * @param element
      */
     public static void clickWithJS(WebElement element) {
@@ -64,5 +67,20 @@ public class BrowserUtils {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public static String getScreenshot(String name) {
+        String path = System.getProperty("user.dir") + "/test-output/screenshots/" + name + ".png";
+        TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
+        //screenshot itself
+        File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        //where screenshot will be saved
+        File destination = new File(path);
+        try {
+            //copy file to the previously specified location
+            FileUtils.copyFile(source, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return path;
+    }
 
 }
