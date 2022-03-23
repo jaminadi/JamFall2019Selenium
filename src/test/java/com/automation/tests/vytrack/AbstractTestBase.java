@@ -1,5 +1,6 @@
 package com.automation.tests.vytrack;
 
+import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
 import com.aventstack.extentreports.ExtentReports;
@@ -8,6 +9,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 public abstract class AbstractTestBase { //this class is supposed to act like design/setup, so we should think of its visibility
@@ -60,7 +62,13 @@ public abstract class AbstractTestBase { //this class is supposed to act like de
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult iTestResult) {
+        //ITestResult class describes the result of a test
+        //if test failed, take a screenshot
+        if (iTestResult.getStatus() == ITestResult.FAILURE) {
+            //screenshot will have a name of the test
+            BrowserUtils.getScreenshot(iTestResult.getName());
+        }
         Driver.closeDriver();
     }
 }
