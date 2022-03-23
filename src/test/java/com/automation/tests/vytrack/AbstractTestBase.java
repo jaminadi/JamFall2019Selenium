@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+
 public abstract class AbstractTestBase { //this class is supposed to act like design/setup, so we should think of its visibility
     protected WebDriverWait wait; //protected because we need it to be visible within the package
     //and within the subclass, regardless of subclass location
@@ -62,12 +64,15 @@ public abstract class AbstractTestBase { //this class is supposed to act like de
     }
 
     @AfterMethod
-    public void tearDown(ITestResult iTestResult) {
+    public void tearDown(ITestResult iTestResult) throws IOException {
         //ITestResult class describes the result of a test
         //if test failed, take a screenshot
         if (iTestResult.getStatus() == ITestResult.FAILURE) {
             //screenshot will have a name of the test
-            BrowserUtils.getScreenshot(iTestResult.getName());
+            String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
+            test.addScreenCaptureFromPath(screenshotPath);//attach screenshot
+            test.fail(iTestResult.getName()); // attach test name that failed
+            test.fail(iTestResult.getThrowable()); //attach console output
         }
         Driver.closeDriver();
     }
