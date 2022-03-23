@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,16 +68,27 @@ public class BrowserUtils {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    /**
+     * @param name screenshot name
+     * @return path to the screenshot
+     */
     public static String getScreenshot(String name) {
+        //adding date and time to screenshot name, to make screenshot unique
+        name = name + "_" + LocalDateTime.now();
+        //where we're gonna store a screenshot
         String path = System.getProperty("user.dir") + "/test-output/screenshots/" + name + ".png";
+        System.out.println("Screenshot is here: " + path);
+        //since our reference type is a WebDriver
+        //we cannot see methods from TakesScreenshot interface
+        //that's why we do casting
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
-        //screenshot itself
+        //takes screenshot of web browser and save it as a file
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
         //where screenshot will be saved
         File destination = new File(path);
         try {
             //copy file to the previously specified location
-            FileUtils.copyFile(source, destination);
+            FileUtils.copyFile(source, destination); //destination = save screenshot here
         } catch (IOException e) {
             e.printStackTrace();
         }
