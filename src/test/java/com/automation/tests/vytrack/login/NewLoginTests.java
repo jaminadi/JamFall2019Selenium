@@ -17,21 +17,28 @@ public class NewLoginTests extends AbstractTestBase {
         //we must add to every test at the beginning
         //test = report.createTest("Test name");
         test = report.createTest("Verify page title");
+
         LoginPage loginPage = new LoginPage();
         loginPage.login();
+        //just like system.out, but it goes to report as well
+        test.info("Login as store manager"); //log some steps
         Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         //if assertion passed, it will set test status in report to passed
+
         test.pass("Page title Dashboard was verified");
     }
 
     //Enter wrong credentials and verify warning message
-
     @Test
     public void verifyWarningMessage() {
+        test = report.createTest("Verify warning message");
+
         LoginPage loginPage = new LoginPage();
         loginPage.login("wrong", "wrong");
         Assert.assertEquals(loginPage.getWarningMessageText(), "Invalid user name or password.");
         //take a screenshot
         BrowserUtils.getScreenshot("warning_message");
+
+        test.pass("Warning message is displayed");
     }
 }
