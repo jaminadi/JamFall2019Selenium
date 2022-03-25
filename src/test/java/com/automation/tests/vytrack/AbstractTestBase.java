@@ -31,6 +31,7 @@ public abstract class AbstractTestBase { //this class is supposed to act like de
     public void setupTest(@Optional String reportName) {
         System.out.println("Report name: " + reportName);
         reportName = reportName == null ? "report.html" : reportName + ".html";
+        //if the report name was not provided, the report will be called report.html
 
         report = new ExtentReports();
 
