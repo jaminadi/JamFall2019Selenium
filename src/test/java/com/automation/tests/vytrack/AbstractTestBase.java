@@ -67,11 +67,12 @@ public abstract class AbstractTestBase { //this class is supposed to act like de
     public void tearDown(ITestResult iTestResult) throws IOException {
         //ITestResult class describes the result of a test
         //if test failed, take a screenshot
+        //no failure, no screenshot
         if (iTestResult.getStatus() == ITestResult.FAILURE) {
             //screenshot will have a name of the test
             String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
             test.fail(iTestResult.getName()); // attach test name that failed
-            BrowserUtils.wait(2);
+            //BrowserUtils.wait(2);
             test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
             test.fail(iTestResult.getThrowable()); //attach console output
         }
