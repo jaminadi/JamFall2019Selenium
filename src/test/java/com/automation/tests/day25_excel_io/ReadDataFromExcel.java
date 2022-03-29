@@ -27,6 +27,14 @@ public class ReadDataFromExcel {
         System.out.println(value); // execute
         System.out.println(secondCellValue);// username
 
+        int lastCell = firstRow.getLastCellNum();
+
+        System.out.println("######################");
+
+        for (int i = 0; i < lastCell; i++) {
+            System.out.print(firstRow.getCell(i) + " |");
+        }
+
 
     }
 }
