@@ -39,7 +39,6 @@ public class ExcelUtil {
 
     /**
      * Get the data of specific cell
-     *
      * @param rowNum starting with 0
      * @param colNum starting with 0
      * @return
@@ -71,7 +70,6 @@ public class ExcelUtil {
 
     /**
      * Get data as a List<Map<<String, String>>, where key name represents column name
-     *
      * @return
      */
     public List<Map<String, String>> getDataList() {
@@ -84,7 +82,7 @@ public class ExcelUtil {
             // get each row
             Row row = workSheet.getRow(i);
             // create map of the row using the column and value
-            // column map key, cell value --> map bvalue
+            // column map key, cell value --> map value
             Map<String, String> rowMap = new HashMap<String, String>();
             for (Cell cell : row) {
                 int columnIndex = cell.getColumnIndex();
@@ -108,7 +106,6 @@ public class ExcelUtil {
 
     /**
      * Write something into excel file
-     *
      * @param value  what should be written
      * @param rowNum starting with 0
      * @param colNum starting with 0

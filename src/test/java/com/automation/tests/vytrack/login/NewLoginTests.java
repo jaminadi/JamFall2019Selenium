@@ -4,6 +4,7 @@ import com.automation.pages.LoginPage;
 import com.automation.tests.vytrack.AbstractTestBase;
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.Driver;
+import com.automation.utilities.ExcelUtil;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -65,4 +66,16 @@ public class NewLoginTests extends AbstractTestBase {
                 {"user16", "UserUser123"}
         };
     }
+
+
+    @DataProvider
+    public Object[][] credentialsFromExcel() {
+        String path = "VytrackTestUsers.xlsx";
+        String spreadSheet = "QA3-short";
+        ExcelUtil excelUtil = new ExcelUtil(path, spreadSheet);
+        //execute	username	password	firstname	lastname	result
+        return excelUtil.getDataArray();
+    }
+
+
 }

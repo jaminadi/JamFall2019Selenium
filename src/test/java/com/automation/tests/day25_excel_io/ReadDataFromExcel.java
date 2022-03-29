@@ -1,5 +1,6 @@
 package com.automation.tests.day25_excel_io;
 
+import com.automation.utilities.ExcelUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.testng.annotations.Test;
 
@@ -52,7 +53,24 @@ public class ReadDataFromExcel {
             }
             System.out.println();
         }
-
-
     }
+
+    @Test
+    public void excelUtilityTest() {
+        String path = "VytrackTestUsers.xlsx";
+        String spreadsheet = "QA1-all";
+        ExcelUtil excelUtil = new ExcelUtil(path, spreadsheet);
+        excelUtil.getDataList().forEach(System.out::println);
+    }
+
+    @Test
+    public void getColumnNamesTest() {
+        String path = "VytrackTestUsers.xlsx";
+        String spreadsheet = "QA1-short";
+        ExcelUtil blabla = new ExcelUtil(path, spreadsheet);
+        System.out.println(blabla.getColumnsNames()); //returns all column names as a list of Strings from left to right
+    }
+
+
 }
+
