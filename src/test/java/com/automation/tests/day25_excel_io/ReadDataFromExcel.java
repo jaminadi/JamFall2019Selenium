@@ -35,6 +35,24 @@ public class ReadDataFromExcel {
             System.out.print(firstRow.getCell(i) + " |");
         }
 
+        //last row is 16, not 15 --> index is 15 because it starts from 0, so we can add + 1
+        int numberOfRows = workSheet.getLastRowNum();
+        //returns the quantity of rows in total
+        int numberOfRows2 = workSheet.getPhysicalNumberOfRows();
+
+        System.out.println("\nIndex of last row: " + numberOfRows);
+        System.out.println("Number of rows: " + numberOfRows2);
+
+        System.out.println("######################");
+
+        for (int row = 0; row < workSheet.getPhysicalNumberOfRows(); row++) {
+            for (int cell = 0; cell < workSheet.getRow(row).getLastCellNum(); cell++) {
+                String cellValue = workSheet.getRow(row).getCell(cell).getStringCellValue();
+                System.out.print(cellValue + " | ");
+            }
+            System.out.println();
+        }
+
 
     }
 }
