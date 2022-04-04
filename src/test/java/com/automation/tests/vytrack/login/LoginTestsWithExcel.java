@@ -17,7 +17,7 @@ public class LoginTestsWithExcel extends AbstractTestBase {
         //spreadsheet name
         String spreadSheet = "QA3-short";
         //create object of excel utility class, so we can write into the file
-        ExcelUtil excelUtil = new ExcelUtil(path, spreadSheet);
+        excelUtil = new ExcelUtil(path, spreadSheet);
 
         test = report.createTest("Login test for username :: " + username);
         //if value of first column is y, test will be executed
